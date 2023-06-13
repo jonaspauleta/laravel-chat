@@ -9,7 +9,8 @@ use Illuminate\Contracts\Broadcasting\ShouldBroadcastNow;
 use Illuminate\Foundation\Events\Dispatchable;
 use Illuminate\Queue\SerializesModels;
 
-class ChatMessageEvent implements ShouldBroadcastNow {
+class ChatMessageEvent implements ShouldBroadcastNow
+{
     use Dispatchable, InteractsWithSockets, SerializesModels;
 
     /**
@@ -24,9 +25,9 @@ class ChatMessageEvent implements ShouldBroadcastNow {
 
     /**
      * Get the channels the event should broadcast on.
-     * @return Channel
      */
-    public function broadcastOn(): Channel {
+    public function broadcastOn(): Channel
+    {
         return new PrivateChannel('private-chat');
     }
 }

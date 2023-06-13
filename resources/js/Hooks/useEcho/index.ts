@@ -1,11 +1,11 @@
-import Echo from 'laravel-echo';
-import Pusher from 'pusher-js';
+import Echo from "laravel-echo";
+import Pusher from "pusher-js";
 
-export function useEcho () {
+export function useEcho() {
     window.Pusher = Pusher;
 
     return new Echo({
-        broadcaster: 'pusher',
+        broadcaster: "pusher",
         key: import.meta.env.VITE_PUSHER_APP_KEY,
         wsHost: import.meta.env.VITE_PUSHER_HOST,
         wsPort: import.meta.env.VITE_PUSHER_PORT,
@@ -14,7 +14,7 @@ export function useEcho () {
         encrypted: true,
         enableLogging: true,
         disableStats: true,
-        enabledTransports: ['ws', 'wss'],
+        enabledTransports: ["ws", "wss"],
         cluster: import.meta.env.VITE_PUSHER_APP_CLUSTER,
     });
 }
