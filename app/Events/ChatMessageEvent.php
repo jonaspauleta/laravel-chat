@@ -24,7 +24,6 @@ class ChatMessageEvent implements ShouldBroadcastNow {
 
     /**
      * Get the channels the event should broadcast on.
-     *
      * @return Channel
      */
     public function broadcastOn(): Channel {

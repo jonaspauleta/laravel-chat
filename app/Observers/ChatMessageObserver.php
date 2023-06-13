@@ -19,32 +19,28 @@ class ChatMessageObserver {
     /**
      * Handle the ChatMessage "updated" event.
      */
-    public function updated(ChatMessage $chatMessage): void
-    {
+    public function updated(ChatMessage $chatMessage): void {
         //
     }
 
     /**
      * Handle the ChatMessage "deleted" event.
      */
-    public function deleted(ChatMessage $chatMessage): void
-    {
+    public function deleted(ChatMessage $chatMessage): void {
         //
     }
 
     /**
      * Handle the ChatMessage "restored" event.
      */
-    public function restored(ChatMessage $chatMessage): void
-    {
+    public function restored(ChatMessage $chatMessage): void {
         //
     }
 
     /**
      * Handle the ChatMessage "force deleted" event.
      */
-    public function forceDeleted(ChatMessage $chatMessage): void
-    {
+    public function forceDeleted(ChatMessage $chatMessage): void {
         //
     }
 }
