@@ -16,11 +16,8 @@ class ChatMessageEvent implements ShouldBroadcastNow
     /**
      * Create a new event instance.
      */
-    public function __construct(
-        public string $message,
-        public int $user_id,
-    ) {
-        //
+    public function __construct() {
+
     }
 
     /**

@@ -12,10 +12,7 @@ class ChatMessageObserver
      */
     public function created(ChatMessage $chatMessage): void
     {
-        ChatMessageEvent::dispatch(
-            $chatMessage->message,
-            $chatMessage->user_id,
-        );
+        ChatMessageEvent::dispatch();
     }
 
     /**
