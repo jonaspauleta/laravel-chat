@@ -5,17 +5,15 @@ namespace App\Observers;
 use App\Events\ChatMessageEvent;
 use App\Models\ChatMessage;
 
-class ChatMessageObserver
-{
+class ChatMessageObserver {
     /**
      * Handle the ChatMessage "created" event.
      */
-    public function created(ChatMessage $chatMessage): void
-    {
-        event(new ChatMessageEvent(
+    public function created(ChatMessage $chatMessage): void {
+        ChatMessageEvent::dispatch(
             $chatMessage->message,
             $chatMessage->user_id,
-        ));
+        );
     }
 
     /**
