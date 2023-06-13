@@ -10,7 +10,7 @@ const appName =
     window.document.getElementsByTagName("title")[0]?.innerText || "ChatApp";
 
 createInertiaApp({
-    title: (title) => appName,
+    title: () => appName,
     resolve: (name) =>
         resolvePageComponent(
             `./Pages/${name}.vue`,

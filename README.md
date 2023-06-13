@@ -1,13 +1,33 @@
-# Laravel, Inertia, and Vue.js Application Setup
+# Laravel, Inertia, and Vue Chat APP Setup
 
-This guide will walk you through the steps to set up a Laravel, Inertia, and Vue.js application.
+This guide will walk you through the steps to set my app.
 
 Prerequisites:
 - PHP
 - Composer
 - Node.js
 - NPM
-- Laravel (you can install the Laravel Installer globally via Composer)
+- Git
+
+## TODO
+1. Add Tests with PEST and Laravel Dusk
+2. Add Redis
+3. Add Minio
+4. Add Laravel Precognition
+5. Add GitHub Actions
+
+## Essential Commands
+1. Run PEST Tests, PHP CS Fixer and PHP Stand
+    > composer quality
+
+2. Run ESLint and Prettier
+    > npm run quality
+
+3. Run Soketi Server (requires Docker)
+    > npm run soketi:start
+
+4. Run Vite
+    > npm run dev
 
 ## Installation Steps:
 
@@ -60,4 +80,3 @@ Prerequisites:
 ## Additional Configuration:
 
 - If you encounter any issues or need further configuration, please refer to the official Laravel and Inertia documentation.
-- Feel free to modify the application to suit your specific requirements.
