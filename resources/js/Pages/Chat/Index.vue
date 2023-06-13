@@ -4,15 +4,15 @@
             <div class="flex flex-col h-full">
                 <div class="flex-grow overflow-y-auto">
                     <div v-for="(message, index) in messages" :key="index" class="mb-2">
-                        <div v-if="message.isSent" class="text-right">
+                        <div v-if="message.user_id === page.props.auth.user.id" class="text-right">
                             <span class="inline-block px-4 py-2 rounded-lg bg-blue-500 text-white">
-                                {{ message.text }}
+                                {{ message.message }}
                             </span>
                         </div>
 
                         <div v-else>
                             <span class="inline-block px-4 py-2 rounded-lg bg-gray-200">
-                                {{ message.text }}
+                                {{ message.message }}
                             </span>
                         </div>
                     </div>
@@ -38,9 +38,14 @@ import { router } from "@inertiajs/vue3";
 import { usePage } from "@inertiajs/vue3";
 import { useEcho } from "@/Hooks/useEcho/index.js";
 
+const props = defineProps({
+    messages: Array,
+});
+
 const page = usePage();
 const echo = useEcho();
-const messages = ref([]);
+
+const messages = ref(props.messages);
 const newMessage = ref('');
 
 function sendMessage() {
@@ -56,8 +61,8 @@ function sendMessage() {
 echo.channel('public')
     .listen('ChatMessageEvent', (e) => {
         messages.value.push({
-            text: e.message,
-            isSent: page.props.auth.user.id === e.user_id,
+            message: e.message,
+            user_id: e.user_id,
         });
     });
 </script>
