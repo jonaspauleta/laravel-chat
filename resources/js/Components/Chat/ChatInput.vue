@@ -28,7 +28,7 @@ function sendMessage() {
                 v-model="newMessage"
                 @keydown.enter="sendMessage"
                 type="text"
-                class="flex-grow p-2 mr-2 border rounded-lg focus:outline-none text-gray-900 dark:text-white"
+                class="flex-grow p-2 mr-2 border rounded-lg focus:outline-none text-gray-900"
                 placeholder="Type a message..."
             />
 
