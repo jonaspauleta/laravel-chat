@@ -1,60 +1,9 @@
-<template>
-    <div class="flex flex-col h-screen">
-        <div class="flex-grow p-4 bg-gray-100">
-            <div class="flex flex-col h-full">
-                <div class="flex-grow overflow-y-auto">
-                    <div
-                        v-for="(message, index) in messages"
-                        :key="index"
-                        class="mb-2"
-                    >
-                        <div
-                            v-if="message.user_id === page.props.auth.user.id"
-                            class="text-right"
-                        >
-                            <span
-                                class="inline-block px-4 py-2 rounded-lg bg-blue-500 text-white"
-                            >
-                                {{ message.message }}
-                            </span>
-                        </div>
-
-                        <div v-else>
-                            <span
-                                class="inline-block px-4 py-2 rounded-lg bg-gray-200"
-                            >
-                                {{ message.message }}
-                            </span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div class="p-4 bg-gray-200">
-            <div class="flex">
-                <input
-                    v-model="newMessage"
-                    @keydown.enter="sendMessage"
-                    type="text"
-                    class="flex-grow p-2 mr-2 border rounded-lg focus:outline-none"
-                    placeholder="Type a message..."
-                />
-
-                <button
-                    @click="sendMessage"
-                    class="px-4 py-2 text-white bg-blue-500 rounded-lg"
-                >
-                    Send
-                </button>
-            </div>
-        </div>
-    </div>
-</template>
-
-<script lang="ts" setup>
-import { PropType, ref } from "vue";
-import { router, usePage } from "@inertiajs/vue3";
+<script setup lang="ts">
+import { PropType } from "vue";
+import { Head, router } from "@inertiajs/vue3";
+import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout.vue";
+import ChatMessages from "@/Components/Chat/ChatMessages.vue";
+import ChatInput from "@/Components/Chat/ChatInput.vue";
 import { useEcho } from "@/Hooks/useEcho";
 import { Chat } from "@/types/Chat";
 
@@ -65,26 +14,41 @@ const props = defineProps({
     } as PropType<Array<Chat>>,
 });
 
-const page = usePage();
 const echo = useEcho();
 
-const messages = ref(props.messages);
-const newMessage = ref("");
-
-function sendMessage() {
-    if (newMessage.value.trim() === "") return;
-
-    router.post("/chat", {
-        message: newMessage.value,
-    });
-
-    newMessage.value = "";
-}
-
-echo.private("private-chat").listen("ChatMessageEvent", (e) => {
-    messages.value.push({
-        message: e.message,
-        user_id: e.user_id,
+echo.private("private-chat").listen("ChatMessageEvent", () => {
+    router.reload({
+        preserveScroll: true,
+        preserveState: true,
     });
 });
 </script>
+
+<template>
+    <Head title="Dashboard" />
+
+    <AuthenticatedLayout>
+        <template #header>
+            <h2
+                class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight"
+            >
+                Dashboard
+            </h2>
+        </template>
+
+        <div class="py-12">
+            <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
+                <div
+                    class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg"
+                >
+                    <div class="p-6 text-gray-900 dark:text-gray-100">
+                        <div class="flex flex-col h-screen">
+                            <ChatMessages :messages="props.messages" />
+                            <ChatInput />
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </AuthenticatedLayout>
+</template>
