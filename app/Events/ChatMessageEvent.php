@@ -4,9 +4,7 @@ namespace App\Events;
 
 use Illuminate\Broadcasting\Channel;
 use Illuminate\Broadcasting\InteractsWithSockets;
-use Illuminate\Broadcasting\PresenceChannel;
 use Illuminate\Broadcasting\PrivateChannel;
-use Illuminate\Contracts\Broadcasting\ShouldBroadcast;
 use Illuminate\Contracts\Broadcasting\ShouldBroadcastNow;
 use Illuminate\Foundation\Events\Dispatchable;
 use Illuminate\Queue\SerializesModels;
@@ -30,6 +28,6 @@ class ChatMessageEvent implements ShouldBroadcastNow {
      * @return Channel
      */
     public function broadcastOn(): Channel {
-        return new Channel('public');
+        return new PrivateChannel('private-chat');
     }
 }

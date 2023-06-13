@@ -1,5 +1,6 @@
 <?php
 
+use App\Broadcasting\Chat;
 use Illuminate\Support\Facades\Broadcast;
 
 /*
@@ -13,7 +14,5 @@ use Illuminate\Support\Facades\Broadcast;
 |
 */
 
-Broadcast::channel('public', function () {
-    return true;
-});
+Broadcast::channel('private-chat', Chat::class);
 

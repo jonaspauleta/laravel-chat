@@ -15,6 +15,6 @@ export function useEcho () {
         enableLogging: true,
         disableStats: true,
         enabledTransports: ['ws', 'wss'],
-        cluster: import.meta.env.VITE_PUSHER_APP_CLUSTER
+        cluster: import.meta.env.VITE_PUSHER_APP_CLUSTER,
     });
 }

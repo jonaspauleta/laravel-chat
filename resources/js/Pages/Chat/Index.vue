@@ -58,7 +58,7 @@ function sendMessage() {
     newMessage.value = '';
 }
 
-echo.channel('public')
+echo.private('private-chat')
     .listen('ChatMessageEvent', (e) => {
         messages.value.push({
             message: e.message,
